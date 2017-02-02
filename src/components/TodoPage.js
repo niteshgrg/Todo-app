@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import AddIcon from '../assets/add_circle.png';
 import DeleteIcon from '../assets/delete_icon.png';
 
-import { addTask, togglecompleted, deleteTask } from '../utils/listFunctions.js';
+import { addTask, togglecompleted, deleteTask, getTaskList } from '../utils/listFunctions.js';
 
 import './TodoPage.scss';
 
@@ -14,13 +14,7 @@ export default class TodoPage extends React.Component {
     super();
     this.state = {
       task: '',
-      taskList: [{
-        task: "hey",
-        completed: false
-      }, {
-        task: "hello",
-        completed: true
-      }]
+      taskList: getTaskList()
     }
   }
 
@@ -39,7 +33,7 @@ export default class TodoPage extends React.Component {
   }
 
   handleDeleteClick(index) {
-    let taskList=deleteTask(index, this.state.taskList);
+    let taskList = deleteTask(index, this.state.taskList);
     this.setState(taskList);
   }
 
@@ -69,7 +63,7 @@ export default class TodoPage extends React.Component {
               <label htmlFor={"checkboxInput"+index}></label>
           </div>
           <div className="task-name">{task["task"]}</div>
-          <img src={DeleteIcon} />
+          <img src={DeleteIcon} onClick={this.handleDeleteClick.bind(this, index)}/>
         </div>
         : null
     ))
