@@ -8,3 +8,8 @@ export function togglecompleted(index, taskList) {
   taskList[index]["completed"] = !taskList[index]["completed"];
   return taskList;
 }
+
+export function deleteTask(index, taskList) {
+  delete taskList[index];
+  return taskList;
+}
