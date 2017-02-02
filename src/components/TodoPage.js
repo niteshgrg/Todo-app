@@ -43,42 +43,21 @@ export default class TodoPage extends React.Component {
     }
   }
 
-
   toggleState(index) {
     let taskList = togglecompleted(index, this.state.taskList);
     this.setState(taskList);
   }
 
-  renderTaskList() {
+  renderTaskList(completed) {
     let { taskList } = this.state;
     return taskList.map((task, index) => (
-      task.completed == false ?
+      task.completed === completed ?
         <div className="task" key={index}>
           <div className="checkbox">
               <input id={"checkboxInput" + index} type="checkbox"
                 onChange={this.toggleState.bind(this, index)}
                 checked={task.completed}
                 value={" "}>
-              </input>
-              <label htmlFor={"checkboxInput"+index}></label>
-          </div>
-          <div className="task-name">{task["task"]}</div>
-          <img src={DeleteIcon} onClick={this.handleDeleteClick.bind(this, index)}/>
-        </div>
-        : null
-    ))
-  }
-
-  renderCompletedList() {
-    let { taskList } = this.state;
-    return taskList.map((task, index) => (
-      task.completed == true ?
-        <div className="task" key={index}>
-          <div className="checkbox">
-              <input id={"checkboxInput" + index} type="checkbox"
-                  onChange={this.toggleState.bind(this, index)}
-                  checked={task.completed}
-                  value={" "}>
               </input>
               <label htmlFor={"checkboxInput"+index}></label>
           </div>
@@ -106,13 +85,13 @@ export default class TodoPage extends React.Component {
             onChange={this.handleChange.bind(this)}/>
         </div>
         <div className="task-list">
-          { this.renderTaskList() }
+          { this.renderTaskList(false) }
         </div>
         <h1 className="completed-tasks">
           Completed
         </h1>
         <div className="task-list">
-          { this.renderCompletedList() }
+          { this.renderTaskList(true) }
         </div>
       </div>
     );
