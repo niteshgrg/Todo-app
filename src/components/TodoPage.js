@@ -38,6 +38,12 @@ export default class TodoPage extends React.Component {
     });
   }
 
+  handleKeyPress(target) {
+    if(target.charCode === 13) {
+      this.handleAddClick();
+    }
+  }
+
   toggleState(index) {
     let taskList = togglecompleted(index, this.state.taskList);
     this.setState(taskList);
@@ -96,6 +102,7 @@ export default class TodoPage extends React.Component {
             className="add-task"
             placeholder="Add Task"
             value={this.state.task}
+            onKeyPress={this.handleKeyPress.bind(this)}
             onChange={this.handleChange.bind(this)}/>
         </div>
         <div className="task-list">
