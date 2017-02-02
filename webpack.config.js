@@ -21,15 +21,22 @@ var config = {
    module: {
       loaders: [
          {
-            test: /\.jsx?$/,
-            loaders: ['react-hot', 'babel'],
-            include: path.join(projectRootPath, "src")
+            test: /\.js?$/,
+            loader: 'babel',
+            exclude: /node_modules/,
+            query: {
+               presets: ['es2015', 'react']
+            }
          },
          {
             test: /\.scss$/,
             loaders: ['style', 'css', 'sass'],
             include: path.join(projectRootPath, "src")
-        }
+        },
+        {
+          test: /\.(png|jpg)$/,
+          loader: "url-loader",
+          query: { limit: "8192" } }
       ]
    }
 }
