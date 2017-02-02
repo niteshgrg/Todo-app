@@ -1,11 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-
-import AddIcon from '../assets/add_circle.png';
-import DeleteIcon from '../assets/delete_icon.png';
 
 import { addTask, togglecompleted, deleteTask, getTaskList } from '../utils/listFunctions.js';
 
+import Task from './Task.js';
+
+import AddIcon from '../assets/add_circle.png';
 import './TodoPage.scss';
 
 export default class TodoPage extends React.Component {
@@ -52,18 +51,10 @@ export default class TodoPage extends React.Component {
     let { taskList } = this.state;
     return taskList.map((task, index) => (
       task.completed === completed ?
-        <div className="task" key={index}>
-          <div className="checkbox">
-              <input id={"checkboxInput" + index} type="checkbox"
-                onChange={this.toggleState.bind(this, index)}
-                checked={task.completed}
-                value={" "}>
-              </input>
-              <label htmlFor={"checkboxInput"+index}></label>
-          </div>
-          <div className="task-name">{task["task"]}</div>
-          <img src={DeleteIcon} onClick={this.handleDeleteClick.bind(this, index)}/>
-        </div>
+        <Task key={index} id={index}
+          taskItem={task}
+          toggleState={this.toggleState.bind(this, index)}
+          handleDeleteClick={this.handleDeleteClick.bind(this, index)} />
         : null
     ))
   }

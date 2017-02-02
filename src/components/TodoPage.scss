@@ -21,48 +21,6 @@
   .task-list {
     font-size: 30px;
     margin-left: 12px;
-
-    .task {
-      display: flex;
-      padding: 10px;
-
-      .task-name {
-        margin-left: 10px;
-      }
-
-      img {
-        height: 30px;
-        margin-left: auto;
-        padding: 5px;
-      }
-
-      .checkbox {
-            display: inline-block;
-            width: 18px;
-            margin: 8px;
-            height: 18px;
-            position: relative;
-            input[type=checkbox] {
-                visibility: hidden;
-            }
-            label {
-                display: inline-block;
-                cursor: pointer;
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 18px;
-                height: 18px;
-                border: solid 2px rgba(0, 0, 0, 0.54);
-                border-radius: 3px;
-            }
-            input[type=checkbox]:checked + label {
-                content: url(../assets/tick.svg);
-                transition: all .5s ease;
-                border: 0;
-            }
-        }
-    }
   }
 
   input:focus {
