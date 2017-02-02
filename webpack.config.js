@@ -30,13 +30,21 @@ var config = {
          },
          {
             test: /\.scss$/,
-            loaders: ['style', 'css', 'sass'],
-            include: path.join(projectRootPath, "src")
+            loaders: ['style', 'css', 'sass']
+        },
+        {
+          test: /\.css$/,
+          loader: 'style-loader!css-loader'
         },
         {
           test: /\.(png|jpg)$/,
           loader: "url-loader",
-          query: { limit: "8192" } }
+          query: { limit: "8192" }
+        },
+        {
+          test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+          loader: "file-loader"
+        }
       ]
    }
 }
